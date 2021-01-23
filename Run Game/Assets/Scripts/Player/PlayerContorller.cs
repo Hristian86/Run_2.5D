@@ -7,10 +7,10 @@ public class PlayerContorller : MonoBehaviour
 {
     private Rigidbody playerBody;
 
-    private float Speed = 800f;
-    public float maxSpeed = 0.10f;
+    private float Speed = 600f;
+    private float maxSpeed = 15f;
 
-    private float jumpSpeed = 500f;
+    private float jumpSpeed = 450f;
     private float jump = 0f;
 
     private bool isDead;
@@ -60,46 +60,46 @@ public class PlayerContorller : MonoBehaviour
         {
             if (horizontals > 0)
             {
-                if (this.horizontal < 0.50f && this.isGrounded)
-                {
-                    this.horizontal += 0.20f;
-                }
+                //if (this.horizontal < 0.50f && this.isGrounded)
+                //{
+                //    this.horizontal += 0.20f;
+                //}
 
-                if (this.isGrounded && horizontals == 0)
-                {
-                    this.horizontal -= 0.10f;
-                }
+                //if (this.isGrounded && horizontals == 0)
+                //{
+                //    this.horizontal -= 0.10f;
+                //}
 
 
                 if (this.moveLocked)
                 {
-                    HorizontalForwardCheck();
+                    HorizontalForwardCheck(horizontals);
                 }
 
             }
             else if (horizontals < 0)
             {
-                if (this.horizontal > -0.50f && this.isGrounded)
-                {
-                    // Make a variable.
-                    this.horizontal += -0.20f;
-                }
+                //if (this.horizontal > -0.50f && this.isGrounded)
+                //{
+                //    // Make a variable.
+                //    this.horizontal += -0.20f;
+                //}
 
-                if (!this.isGrounded)
-                {
-                    this.horizontal = -0.30f;
-                }
+                //if (!this.isGrounded)
+                //{
+                //    this.horizontal = -0.30f;
+                //}
 
 
                 if (this.moveLocked)
                 {
-                    HorizontalBackwordCheck();
+                    HorizontalBackwordCheck(horizontals);
                 }
             }
         }
     }
 
-    private void HorizontalBackwordCheck()
+    private void HorizontalBackwordCheck(float horizontals)
     {
 
         Vector3 updatedVelosity = this.playerBody.velocity;
@@ -111,11 +111,11 @@ public class PlayerContorller : MonoBehaviour
         }
         else
         {
-            this.playerBody.AddForce(0, 0, this.horizontal * this.Speed * Time.deltaTime);
+            this.playerBody.AddForce(0, 0, horizontals * this.Speed * Time.deltaTime);
         }
     }
 
-    private void HorizontalForwardCheck()
+    private void HorizontalForwardCheck(float horizontals)
     {
         Vector3 updatedVelosity = this.playerBody.velocity;
         if (updatedVelosity.z > this.maxSpeed)
@@ -125,7 +125,7 @@ public class PlayerContorller : MonoBehaviour
         }
         else
         {
-            this.playerBody.AddForce(0, 0, this.horizontal * this.Speed * Time.deltaTime);
+            this.playerBody.AddForce(0, 0, horizontals * this.Speed * Time.deltaTime);
         }
     }
 
