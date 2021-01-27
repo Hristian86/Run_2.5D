@@ -21,6 +21,7 @@ public class PlayerContorller : MonoBehaviour
     private bool isGrounded = true;
 
     private float ultimateSpeed;
+    //private Animator animator;
 
     private void Awake()
     {
@@ -28,6 +29,8 @@ public class PlayerContorller : MonoBehaviour
         this.playerBody = obj.GetComponent<Rigidbody>();
 
         this.ultimateSpeed = this.horizontal * this.Speed * Time.deltaTime;
+
+        //animator = GetComponent<Animator>();
 
         this.moveLocked = true;
     }
@@ -54,7 +57,13 @@ public class PlayerContorller : MonoBehaviour
 
     private void CheckForHorizontalMovement()
     {
-        var horizontals = Input.GetAxisRaw("Horizontal");
+        float horizontals = Input.GetAxisRaw("Horizontal");
+
+        if (horizontals > 0)
+        {
+            Debug.Log("here");
+            //animator.SetFloat("walk", horizontals);
+        }
 
         if (horizontals != 0 && this.horizontal != horizontals)
         {
