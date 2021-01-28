@@ -38,8 +38,31 @@ public class PlayerContorller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CheckForVerticalMovement();
         CheckForHorizontalMovement();
         CheckForMovementJump();
+    }
+
+    private void CheckForHorizontalMovement()
+    {
+        float horizontalMove = Input.GetAxisRaw("Horizontal");
+
+        Vector3 updatedVelosity = this.playerBody.velocity;
+
+        if (updatedVelosity.x < -this.maxSpeed)
+        {
+            updatedVelosity.x = -this.maxSpeed;
+            this.playerBody.velocity = updatedVelosity;
+        }
+        else if (updatedVelosity.x > this.maxSpeed)
+        {
+            updatedVelosity.x = this.maxSpeed;
+            this.playerBody.velocity = updatedVelosity;
+        }
+        else
+        {
+            this.playerBody.AddForce(horizontalMove * this.Speed * Time.deltaTime, 0, 0);
+        }
     }
 
     private void CheckForMovementJump()
@@ -55,60 +78,31 @@ public class PlayerContorller : MonoBehaviour
         }
     }
 
-    private void CheckForHorizontalMovement()
+    private void CheckForVerticalMovement()
     {
-        float horizontals = Input.GetAxisRaw("Horizontal");
-
-        if (horizontals > 0)
+        float verticalMove = Input.GetAxisRaw("Vertical");
+        
+        if (verticalMove != 0 && this.horizontal != verticalMove)
         {
-            Debug.Log("here");
-            //animator.SetFloat("walk", horizontals);
-        }
-
-        if (horizontals != 0 && this.horizontal != horizontals)
-        {
-            if (horizontals > 0)
+            if (verticalMove > 0)
             {
-                //if (this.horizontal < 0.50f && this.isGrounded)
-                //{
-                //    this.horizontal += 0.20f;
-                //}
-
-                //if (this.isGrounded && horizontals == 0)
-                //{
-                //    this.horizontal -= 0.10f;
-                //}
-
-
                 if (this.moveLocked)
                 {
-                    HorizontalForwardCheck(horizontals);
+                    verticalForwardCheck(verticalMove);
                 }
 
             }
-            else if (horizontals < 0)
+            else if (verticalMove < 0)
             {
-                //if (this.horizontal > -0.50f && this.isGrounded)
-                //{
-                //    // Make a variable.
-                //    this.horizontal += -0.20f;
-                //}
-
-                //if (!this.isGrounded)
-                //{
-                //    this.horizontal = -0.30f;
-                //}
-
-
                 if (this.moveLocked)
                 {
-                    HorizontalBackwordCheck(horizontals);
+                    verticalBackwordCheck(verticalMove);
                 }
             }
         }
     }
 
-    private void HorizontalBackwordCheck(float horizontals)
+    private void verticalBackwordCheck(float horizontals)
     {
 
         Vector3 updatedVelosity = this.playerBody.velocity;
@@ -124,7 +118,7 @@ public class PlayerContorller : MonoBehaviour
         }
     }
 
-    private void HorizontalForwardCheck(float horizontals)
+    private void verticalForwardCheck(float horizontals)
     {
         Vector3 updatedVelosity = this.playerBody.velocity;
         if (updatedVelosity.z > this.maxSpeed)
