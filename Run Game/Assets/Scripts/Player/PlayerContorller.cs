@@ -20,6 +20,7 @@ public class PlayerContorller : MonoBehaviour
     private float horizontal = 0f;
     private bool moveLocked = false;
     private bool isGrounded = true;
+    private float position;
 
     private float ultimateSpeed;
     //private Animator animator;
@@ -48,8 +49,9 @@ public class PlayerContorller : MonoBehaviour
     private void CheckFOrRotation()
     {
         // To do mouse move and mov ement.
-        float position = Input.GetAxisRaw("Mouse X");
-        this.playerBody.transform.Rotate(0f, position, 0f);
+        this.position = Input.GetAxisRaw("Mouse X");
+        //this.playerBody.transform.Rotate(0f, position, 0f);
+        
     }
 
     private void CheckForHorizontalMovement()
@@ -82,7 +84,6 @@ public class PlayerContorller : MonoBehaviour
         if (jump > 0 && this.isGrounded && updatedVelosity.y < 0.1f)
         {
             this.playerBody.AddForce(0, this.jumpSpeed, 0);
-            this.playerBody.freezeRotation = true;
             this.isGrounded = false;
         }
     }
@@ -129,15 +130,28 @@ public class PlayerContorller : MonoBehaviour
 
     private void verticalForwardCheck(float horizontals)
     {
-        Vector3 updatedVelosity = this.playerBody.velocity;
-        if (updatedVelosity.z > this.maxSpeed)
+        //Vector3 updatedVelosity = this.playerBody.velocity;
+        //if (updatedVelosity.z > this.maxSpeed)
+        //{
+        //    updatedVelosity.z = this.maxSpeed;
+        //    this.playerBody.velocity = updatedVelosity;
+        //}
+        //else
+        //{
+        //    this.playerBody.AddForce(0, 0, horizontals * this.Speed * Time.deltaTime);
+        //}
+
+        if (position > 0)
         {
-            updatedVelosity.z = this.maxSpeed;
-            this.playerBody.velocity = updatedVelosity;
+            playerBody.position += playerBody.transform.forward * Time.deltaTime * position;
+        }
+        else if(position < 0)
+        {
+            playerBody.position -= playerBody.transform.forward * Time.deltaTime * position;
         }
         else
         {
-            this.playerBody.AddForce(0, 0, horizontals * this.Speed * Time.deltaTime);
+            playerBody.position += playerBody.transform.forward * Time.deltaTime * 5;
         }
     }
 

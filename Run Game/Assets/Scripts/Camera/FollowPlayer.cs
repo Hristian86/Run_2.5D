@@ -6,7 +6,7 @@ using UnityEngine;
 public class FollowPlayer : MonoBehaviour
 {
     private Transform player;
-    public Vector3 offsetCamera;
+    private Vector3 offsetCamera;
 
     private void Start()
     {
@@ -23,11 +23,15 @@ public class FollowPlayer : MonoBehaviour
 
     private void CameraFolow()
     {
+        offsetCamera.x = 1.7f;
+        offsetCamera.y = 1f;
+        offsetCamera.z = 10.5f;
         Vector3 playerPos = player.position - offsetCamera;
         playerPos.z = playerPos.z + 4f;
         playerPos.y = playerPos.y + 3.5f;
         transform.position = playerPos;
 
         // To do move player direction to mouseX...
+
     }
 }
