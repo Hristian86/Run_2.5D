@@ -24,9 +24,10 @@ public class FollowPlayer : MonoBehaviour
     private void CameraFolow()
     {
         Vector3 playerPos = player.position - offsetCamera;
-        //playerPos.x = 8f;
-        //playerPos.z = playerPos.z + 4f;
-        //playerPos.y = 2.7f;
+        playerPos.z = playerPos.z + 4f;
+        playerPos.y = playerPos.y + 3.5f;
         transform.position = playerPos;
+
+        // To do move player direction to mouseX...
     }
 }

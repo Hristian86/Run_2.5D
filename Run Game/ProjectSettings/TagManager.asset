@@ -8,6 +8,7 @@ TagManager:
   - Ground
   - Menu
   - MenuOptions
+  - Pet
   layers:
   - Default
   - TransparentFX

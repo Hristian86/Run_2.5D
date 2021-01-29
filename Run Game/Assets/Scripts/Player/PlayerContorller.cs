@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerContorller : MonoBehaviour
 {
+    public Camera camera;
     private Rigidbody playerBody;
 
     private float Speed = 600f;
@@ -40,7 +41,15 @@ public class PlayerContorller : MonoBehaviour
     {
         CheckForVerticalMovement();
         CheckForHorizontalMovement();
+        CheckFOrRotation();
         CheckForMovementJump();
+    }
+
+    private void CheckFOrRotation()
+    {
+        // To do mouse move and mov ement.
+        float position = Input.GetAxisRaw("Mouse X");
+        this.playerBody.transform.Rotate(0f, position, 0f);
     }
 
     private void CheckForHorizontalMovement()

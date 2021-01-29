@@ -104,6 +104,7 @@
     <Compile Include="Assets\Scripts\Animations\MovementAnimator.cs" />
     <Compile Include="Assets\Scripts\Camera\FollowPlayer.cs" />
     <Compile Include="Assets\Scripts\MainMenu\MainMenuController.cs" />
+    <Compile Include="Assets\Scripts\Pet\PetController.cs" />
     <Compile Include="Assets\Scripts\Player\CharacterController.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerCollision.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerContorller.cs" />
@@ -184,6 +185,9 @@
     <None Include="Assets\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\FXAAPreset2.shader" />
     <None Include="Assets\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlurAndFlares.shader" />
     <None Include="Assets\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendForBloom.shader" />
+    <Reference Include="Cinemachine">
+      <HintPath>G:/FilesForGithub/Unity Run_2.5D/Run Game/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>G:/FilesForGithub/Unity Run_2.5D/Run Game/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
@@ -192,6 +196,9 @@
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
       <HintPath>G:/FilesForGithub/Unity Run_2.5D/Run Game/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="com.unity.cinemachine.editor">
+      <HintPath>G:/FilesForGithub/Unity Run_2.5D/Run Game/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>G:/FilesForGithub/Unity Run_2.5D/Run Game/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
