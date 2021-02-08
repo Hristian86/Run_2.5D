@@ -9,6 +9,7 @@ TagManager:
   - Menu
   - MenuOptions
   - Pet
+  - Enemy
   layers:
   - Default
   - TransparentFX
