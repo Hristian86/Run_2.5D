@@ -107,6 +107,7 @@
     <Compile Include="Assets\Scripts\Enemy\EnemyCOntroller.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyHeathStats.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyStats.cs" />
+    <Compile Include="Assets\Scripts\HeathBarScript.cs" />
     <Compile Include="Assets\Scripts\MainMenu\MainMenuController.cs" />
     <Compile Include="Assets\Scripts\Pet\PetController.cs" />
     <Compile Include="Assets\Scripts\Player\CharacterController.cs" />

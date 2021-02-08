@@ -5,8 +5,8 @@ using UnityEngine;
 public class CharacterStats : MonoBehaviour
 {
 
-    protected int maxHealth = 300;
-    public int currentHealth { get; set; }
+    public int maxHealth = 300;
+    public int currentHealth;
 
     public BaseStats damage;
     public BaseStats armor;
