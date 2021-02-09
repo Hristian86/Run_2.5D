@@ -6,45 +6,48 @@ using UnityEngine;
 
 public class PlayerStats : CharacterStats
 {
-    private EnemyCOntroller enemy;
-    private GameObject enemyObject;
-    private EnemyStats enemyStats;
-
-    public HeathBarScript healthbar;
+    [SerializeField] private EnemyCOntroller enemy;
+    [SerializeField] private GameObject enemyObject;
+    [SerializeField] private EnemyStats enemyStats;
+    [SerializeField] public HeathBarScript healthbar;
+    [SerializeField] public SelectionManager selectionManager;
+    private string player = "Player";
+    private GameObject[] allEnemies;
+    private bool[] visitedEnemy;
 
     private void Start()
     {
         base.isDead = false;
         this.healthbar.SetMaxHealth(base.maxHealth);
         this.healthbar.SetHealth(base.maxHealth);
+        this.InitEnemies();
     }
 
     private void Awake()
     {
         //this.InitEnemies();
         base.currentHealth = base.maxHealth;
+        this.InitEnemies();
     }
 
     private void InitEnemies()
     {
         var allEn = GameObject.FindGameObjectsWithTag("Enemy")
-            .Where(x => x.GetComponent<EnemyCOntroller>().Interact == true)
             .Select(a => a).ToArray();
+        this.allEnemies = allEn;
 
-        if (allEn.Length > 0)
-        {
-            foreach (var enemies in allEn)
-            {
-                this.enemyObject = enemies;
-                this.enemy = enemyObject.GetComponent<EnemyCOntroller>();
-                this.enemyStats = enemyObject.GetComponent<EnemyStats>();
-            }
-        }
+        this.visitedEnemy = new bool[allEn.Length];
+        Debug.Log(visitedEnemy.Length);
     }
 
     private void Update()
     {
-        this.InitEnemies();
+        
+
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            this.SwitchTarget();
+        }
 
         if (Input.GetKeyDown(KeyCode.F))
         {
@@ -52,6 +55,30 @@ public class PlayerStats : CharacterStats
         }
 
         this.healthbar.SetHealth(base.currentHealth);
+    }
+
+    private void SwitchTarget()
+    {
+        if (this.allEnemies.Length > 1)
+        {
+            for (int i = 0; i < this.allEnemies.Length; i++)
+            {
+                if (!this.visitedEnemy.Contains(false))
+                {
+                    this.visitedEnemy = new bool[this.allEnemies.Length];
+                }
+
+                if (!this.visitedEnemy[i])
+                {
+                    this.enemyObject = this.allEnemies[i];
+                    this.enemy = enemyObject.GetComponent<EnemyCOntroller>();
+                    this.enemyStats = enemyObject.GetComponent<EnemyStats>();
+                    this.visitedEnemy[i] = true;
+                    this.selectionManager.SetEnemyByPressingTab(this.allEnemies[i].transform);
+                    return;
+                }
+            }
+        }
     }
 
     private void AttackEnemy()

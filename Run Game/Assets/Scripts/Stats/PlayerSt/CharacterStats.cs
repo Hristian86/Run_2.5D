@@ -8,8 +8,9 @@ public class CharacterStats : MonoBehaviour
     public int maxHealth = 300;
     public int currentHealth;
 
-    public BaseStats damage;
-    public BaseStats armor;
+    [SerializeField] public BaseStats damage;
+    [SerializeField] public BaseStats armor;
+
     public bool isDead { get; set; }
 
     public void TakeDamage(int damage)

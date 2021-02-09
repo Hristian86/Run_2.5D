@@ -5,7 +5,7 @@ using UnityEngine;
 public class MouseController : MonoBehaviour
 {
     private float mouseSensitivity = 70f;
-    public Transform playerBody;
+    [SerializeField] public Transform playerBody;
     private float xRotation = 0f;
 
     // Start is called before the first frame update

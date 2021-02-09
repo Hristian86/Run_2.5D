@@ -4,12 +4,20 @@ using UnityEngine;
 
 public class EnemyStats : EnemyHeathStats
 {
-    public GameObject playerObject;
+    [SerializeField] public GameObject playerObject;
+    [SerializeField] public float TimerForNextAttack;
+    [SerializeField] public float Cooldown;
+    [SerializeField] public Transform enemyTransform;
+    private string playerTag = "Player";
 
     private void Start()
     {
+        this.playerObject = GameObject.FindGameObjectWithTag(this.playerTag);
         base.player = playerObject.GetComponent<PlayerStats>();
         base.mySelfNpcActions = gameObject.GetComponent<EnemyCOntroller>();
+
+        Cooldown = 3;
+        TimerForNextAttack = Cooldown;
     }
 
     private void Update()
@@ -19,10 +27,18 @@ public class EnemyStats : EnemyHeathStats
             // To do combat
             // it works.
             //Debug.Log("COMBAT");
-
-            if (!this.isDead && !this.player.isDead)
+            if (TimerForNextAttack > 0)
             {
-                this.player.TakeDamage(base.damage.GetValue);
+                TimerForNextAttack -= Time.deltaTime;
+            }
+            else if (TimerForNextAttack <= 0)
+            {
+                if (!this.isDead && !this.player.isDead)
+                {
+                    this.player.TakeDamage(base.damage.GetValue);
+                }
+
+                TimerForNextAttack = Cooldown;
             }
         }
     }

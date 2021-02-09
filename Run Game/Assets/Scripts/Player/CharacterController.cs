@@ -9,12 +9,12 @@ namespace Assets.Scripts.Player
 {
     public class CharacterController : MonoBehaviour
     {
-        public Rigidbody _rigitBody;
+        [SerializeField] public Rigidbody _rigitBody;
 
         private float _movementForse = 10f;
         private float maxSpeed = 100f;
 
-        private float _jumpForce = 200f;
+        private float _jumpForce = 300f;
         private bool _shouldJump;
 
         private bool isGrounded = true;
@@ -33,7 +33,7 @@ namespace Assets.Scripts.Player
 
         private void ShouldJump()
         {
-            if (this._shouldJump == false)
+            if (this._shouldJump == false && this.isGrounded)
             {
                 this.isGrounded = false;
                 this._shouldJump = Input.GetKeyDown(KeyCode.Space);

@@ -11,12 +11,12 @@ public class SelectionManager : MonoBehaviour
     [SerializeField] public Material highlightMatirial;
     [SerializeField] public Material defaultMatirial;
     [SerializeField] public Material markedEnemyMatirial;
-    private Transform selectionToClear;
-    private PlayerStats setPlayer;
-    private EnemyStats enemyStatsForCheck;
+    [SerializeField] private Transform selectionToClear;
+    [SerializeField] private PlayerStats setPlayer;
+    [SerializeField] private EnemyStats enemyStatsForCheck;
 
     public Camera camera;
-    private Transform currentTarget;
+    [SerializeField] private Transform currentTarget;
 
     private void Start()
     {
@@ -71,6 +71,11 @@ public class SelectionManager : MonoBehaviour
         {
             this.SelectEn(selection);
         }
+    }
+
+    public void SetEnemyByPressingTab(Transform selection)
+    {
+        this.SelectEn(selection);
     }
 
     private void SelectEn(Transform selection)

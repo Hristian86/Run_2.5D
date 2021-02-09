@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerContorller : MonoBehaviour
 {
     public Camera camera;
-    private Rigidbody playerBody;
+    [SerializeField] private Rigidbody playerBody;
 
     private float Speed = 600f;
     private float maxSpeed = 15f;
@@ -40,9 +40,9 @@ public class PlayerContorller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CheckForVerticalMovement();
-        CheckForHorizontalMovement();
-        CheckFOrRotation();
+        //CheckForVerticalMovement();
+        //CheckForHorizontalMovement();
+        //CheckFOrRotation();
         CheckForMovementJump();
     }
 

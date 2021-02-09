@@ -11,8 +11,8 @@ public class EnemyHeathStats : MonoBehaviour
 
     public int currentHealth { get; private set; }
 
-    public BaseStats damage;
-    public BaseStats armor;
+    [SerializeField] public BaseStats damage;
+    [SerializeField] public BaseStats armor;
     public bool isDead { get; private set; }
 
     private void Start()

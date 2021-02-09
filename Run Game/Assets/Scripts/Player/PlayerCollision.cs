@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerCollision : MonoBehaviour
 {
-    private PlayerContorller movement;
-    private GameObject playerObject;
+    [SerializeField] private PlayerContorller movement;
+    [SerializeField] private GameObject playerObject;
 
     private void Start()
     {
