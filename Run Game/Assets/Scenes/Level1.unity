@@ -314,6 +314,53 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: Cinemachine.CinemachineBrain+VcamActivatedEvent, Cinemachine, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!1 &672464562
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 672464564}
+  - component: {fileID: 672464563}
+  m_Layer: 0
+  m_Name: SelectionManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &672464563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 672464562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44c83b04417fed84c9a3a67286ef13f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlightMatirial: {fileID: 2100000, guid: f8299a0aa09f24142954a3080a979129, type: 2}
+  defaultMatirial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  markedEnemyMatirial: {fileID: 2100000, guid: 967f1863f3d2d8a43bbda8ac2ec766fd, type: 2}
+  camera: {fileID: 750429109}
+--- !u!4 &672464564
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 672464562}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &689977991
 GameObject:
   m_ObjectHideFlags: 0
@@ -425,6 +472,12 @@ Transform:
 --- !u!1 &748867453 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2031044045844407371, guid: 795d21aacec301d42a43a66be10dae6e,
+    type: 3}
+  m_PrefabInstance: {fileID: 2031044045229828918}
+  m_PrefabAsset: {fileID: 0}
+--- !u!20 &750429109 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 2031044043817473877, guid: 795d21aacec301d42a43a66be10dae6e,
     type: 3}
   m_PrefabInstance: {fileID: 2031044045229828918}
   m_PrefabAsset: {fileID: 0}
@@ -766,6 +819,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loockRadius: 10
+  player: Player
+  chasePl: 0
 --- !u!195 &1143032360
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -883,7 +938,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1143032358}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.939, y: 0.541, z: -75.45}
+  m_LocalPosition: {x: 3.939, y: 0.541, z: -44.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -907,7 +962,6 @@ MonoBehaviour:
   armor:
     baseValue: 0
   playerObject: {fileID: 748867453}
-  player: {fileID: 0}
 --- !u!114 &1143032368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1191,7 +1245,6 @@ MonoBehaviour:
   armor:
     baseValue: 0
   playerObject: {fileID: 748867453}
-  player: {fileID: 0}
 --- !u!114 &1730934041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1205,6 +1258,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loockRadius: 10
+  player: Player
+  chasePl: 0
 --- !u!195 &1730934042
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1322,7 +1377,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1730934038}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.826, y: 0.541, z: -64.87}
+  m_LocalPosition: {x: 13.6, y: 0.541, z: -68.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1906,6 +1961,16 @@ PrefabInstance:
     - target: {fileID: 2031044044133910374, guid: 795d21aacec301d42a43a66be10dae6e,
         type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2031044043817473897, guid: 795d21aacec301d42a43a66be10dae6e,
+        type: 3}
+      propertyPath: m_Name
+      value: Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 2031044043817473879, guid: 795d21aacec301d42a43a66be10dae6e,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

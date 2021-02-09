@@ -21,7 +21,7 @@ public class PlayerStats : CharacterStats
 
     private void Awake()
     {
-        this.InitEnemies();
+        //this.InitEnemies();
         base.currentHealth = base.maxHealth;
     }
 
@@ -45,22 +45,30 @@ public class PlayerStats : CharacterStats
     private void Update()
     {
         this.InitEnemies();
-        if (enemy != null && enemy.Interact)
-        {
 
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            this.AttackEnemy();
+        }
+
+        this.healthbar.SetHealth(base.currentHealth);
+    }
+
+    private void AttackEnemy()
+    {
+        if (enemy != null)
+        {
             if (!base.isDead && !this.enemyStats.isDead)
             {
                 this.enemyStats.TakeDamage(base.damage.GetValue);
-                this.healthbar.SetHealth(base.currentHealth);
             }
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public void SetEnemy(EnemyCOntroller enemyController, EnemyStats enemyStats)
     {
-        if (collision.collider.tag == "Enemy")
-        {
-        }
+        this.enemy = enemyController;
+        this.enemyStats = enemyStats;
     }
 
 }

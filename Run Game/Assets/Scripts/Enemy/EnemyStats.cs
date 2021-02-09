@@ -4,19 +4,17 @@ using UnityEngine;
 
 public class EnemyStats : EnemyHeathStats
 {
-    private EnemyCOntroller mySelf;
     public GameObject playerObject;
-    public PlayerStats player;
 
     private void Start()
     {
-        player = playerObject.GetComponent<PlayerStats>();
-        mySelf = gameObject.GetComponent<EnemyCOntroller>();
+        base.player = playerObject.GetComponent<PlayerStats>();
+        base.mySelfNpcActions = gameObject.GetComponent<EnemyCOntroller>();
     }
 
     private void Update()
     {
-        if (mySelf != null && this.mySelf.Interact)
+        if (base.mySelfNpcActions != null && base.mySelfNpcActions.Interact)
         {
             // To do combat
             // it works.
@@ -26,7 +24,7 @@ public class EnemyStats : EnemyHeathStats
             {
                 this.player.TakeDamage(base.damage.GetValue);
             }
-        }   
+        }
     }
 
     public override void Die()

@@ -114,6 +114,7 @@
     <Compile Include="Assets\Scripts\Player\MouseController.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerCollision.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerContorller.cs" />
+    <Compile Include="Assets\Scripts\Player\SelectionManager.cs" />
     <Compile Include="Assets\Scripts\PlayerManagerHolder\PlayerManager.cs" />
     <Compile Include="Assets\Scripts\Stats\PlayerSt\BaseStats.cs" />
     <Compile Include="Assets\Scripts\Stats\PlayerSt\CharacterStats.cs" />

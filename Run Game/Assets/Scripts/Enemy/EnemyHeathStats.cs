@@ -5,6 +5,10 @@ using UnityEngine;
 public class EnemyHeathStats : MonoBehaviour
 {
     public int maxHealth = 300;
+
+    protected EnemyCOntroller mySelfNpcActions;
+    protected PlayerStats player;
+
     public int currentHealth { get; private set; }
 
     public BaseStats damage;
@@ -23,14 +27,18 @@ public class EnemyHeathStats : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        
         if (!this.isDead)
         {
+            // make npc chase you when you hit it with range damage.
+            this.mySelfNpcActions.chasePl = true;
+
             damage -= this.armor.GetValue;
             damage = Mathf.Clamp(damage, 0, int.MaxValue);
 
             this.currentHealth -= damage;
 
-            //Debug.Log(transform.name + "Takes damage" + damage + "damage");
+            Debug.Log(transform.name + "Takes damage" + damage + "damage");
         }
 
         if (this.currentHealth <= 0)

@@ -7,14 +7,17 @@ using UnityEngine.AI;
 public class EnemyCOntroller : MonoBehaviour
 {
     public float loockRadius = 10f;
-    public bool Interact { get; private set; }
+    public string player = "Player";
+    public bool chasePl;
+
+    public bool Interact { get; set; }
 
     private Transform target;
     NavMeshAgent agent;
 
     private void Awake()
     {
-        var obj = GameObject.FindGameObjectWithTag("Player");
+        var obj = GameObject.FindGameObjectWithTag(this.player);
         this.target = obj.GetComponent<Rigidbody>().transform;
     }
 
@@ -22,6 +25,7 @@ public class EnemyCOntroller : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        this.chasePl = false;
     }
 
     // Update is called once per frame
@@ -30,11 +34,11 @@ public class EnemyCOntroller : MonoBehaviour
         this.ChasePlayer();
     }
 
-    private void ChasePlayer()
+    public void ChasePlayer()
     {
         float distance = Vector3.Distance(this.target.position, this.transform.position);
 
-        if (distance <= this.loockRadius)
+        if (distance <= this.loockRadius || this.chasePl)
         {
             this.agent.SetDestination(this.target.position);
 
