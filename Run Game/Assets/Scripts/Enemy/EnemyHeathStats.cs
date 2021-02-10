@@ -4,16 +4,20 @@ using UnityEngine;
 
 public class EnemyHeathStats : MonoBehaviour
 {
+
     public int maxHealth = 300;
+    public int NPCLevel = 1;
 
     protected EnemyCOntroller mySelfNpcActions;
     protected PlayerStats player;
+
+    [SerializeField] public NPC_Health_Bar healthBar;
 
     public int currentHealth { get; private set; }
 
     [SerializeField] public BaseStats damage;
     [SerializeField] public BaseStats armor;
-    public bool isDead { get; private set; }
+    public bool isDead { get; protected set; }
 
     private void Start()
     {
@@ -37,6 +41,7 @@ public class EnemyHeathStats : MonoBehaviour
             damage = Mathf.Clamp(damage, 0, int.MaxValue);
 
             this.currentHealth -= damage;
+            this.healthBar.setHealth(this.currentHealth);
 
             Debug.Log(transform.name + "Takes damage" + damage + "damage");
         }

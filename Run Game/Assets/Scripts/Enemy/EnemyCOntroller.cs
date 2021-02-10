@@ -53,6 +53,10 @@ public class EnemyCOntroller : MonoBehaviour
                 this.Interact = false;
             }
         }
+        else
+        {
+            // TO DO Return to start position...
+        }
     }
 
     private void FaceTarget()

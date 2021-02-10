@@ -11,7 +11,7 @@ public class PlayerContorller : MonoBehaviour
     private float Speed = 600f;
     private float maxSpeed = 15f;
 
-    private float jumpSpeed = 450f;
+    private float jumpSpeed = 250f;
     private float jump = 0f;
 
     private bool isDead;
