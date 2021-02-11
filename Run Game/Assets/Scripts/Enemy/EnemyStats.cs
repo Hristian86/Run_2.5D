@@ -19,8 +19,10 @@ public class EnemyStats : EnemyHeathStats
 
         this.Cooldown = 3;
         this.TimerForNextAttack = this.Cooldown;
+        base.currentHealth = this.maxHealth;
         this.healthBar.SetMaxHealth(base.maxHealth);
         this.healthBar.setHealth(base.maxHealth);
+
     }
 
     private void InitPlayer()
@@ -33,6 +35,12 @@ public class EnemyStats : EnemyHeathStats
     private void Update()
     {
         this.DoDamageToPlayer();
+        this.DisplayHealthAndLevelHud();
+    }
+
+    private void DisplayHealthAndLevelHud()
+    {
+        base.enemyHealthText.text = $"Lv: {base.NPCLevel}";
     }
 
     private void DoDamageToPlayer()
@@ -50,12 +58,19 @@ public class EnemyStats : EnemyHeathStats
             {
                 if (!this.isDead && !this.player.isDead)
                 {
-                    this.player.TakeDamage(base.damage.GetValue * base.NPCLevel);
+                    this.SetNPCDamage();
+                    this.player.TakeDamage(base.damage.GetValue);
                 }
 
                 this.TimerForNextAttack = this.Cooldown;
             }
         }
+    }
+
+    private void SetNPCDamage()
+    {
+        var baseDmg = 20;
+        base.damage.SetDamage(baseDmg * base.NPCLevel);
     }
 
     public override void Die()

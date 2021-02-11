@@ -77,13 +77,13 @@ public class CombatMethods : SaveManager
 
                 if (base.enemyStats.isDead)
                 {
-                    this.DeadEnemyAndAddExperience();
+                    this.DeadEnemyAndAddExperience(base.enemyStats.NPCLevel);
                 }
             }
         }
     }
 
-    private void DeadEnemyAndAddExperience()
+    private void DeadEnemyAndAddExperience(int nPCLevel)
     {
         if (enemyObject != null)
         {
@@ -93,7 +93,7 @@ public class CombatMethods : SaveManager
         this.InitEnemies();
 
         // Add experience to the variable...
-        base.AddExperience();
+        base.AddExperience(nPCLevel);
     }
 
     private int CalculatedamageDone()

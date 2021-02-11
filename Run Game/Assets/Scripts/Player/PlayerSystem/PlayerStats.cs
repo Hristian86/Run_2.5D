@@ -10,7 +10,9 @@ public class PlayerStats : UpdateSystem
     {
         // Initialize the health and level + experience...
         base.ReadSave();
-        //base.calculateHealtPerLevelInit(base.currentLevel);
+
+        // Increase player max experience need to level up...
+        this.SolveExperiencePerLevelIncrease();
 
         base.isDead = false;
         this.resetEnemies = false;
@@ -21,11 +23,6 @@ public class PlayerStats : UpdateSystem
         // For leveling
         base.currentHealth = base.maxHealth;
     }
-
-    //private void Awake()
-    //{
-    //    base.currentHealth = base.maxHealth;
-    //}
 
     private void Update()
     {

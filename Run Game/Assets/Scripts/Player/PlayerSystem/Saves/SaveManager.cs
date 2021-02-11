@@ -11,8 +11,12 @@ public class SaveManager : LevelingSystem
     {
         using (StreamWriter write = new StreamWriter(@"E:\SaveGame.txt"))
         {
-            string y = $"level:<{this.playerLevel}>";
-            string x = $"exp:<{this.experience}>";
+            string y = "level:1";
+            if (base.playerLevel > 0)
+            {
+                y = $"level:{this.playerLevel}";
+            }
+            string x = $"exp:{this.experience}";
             write.WriteLine(y);
             write.WriteLine(x);
         }
